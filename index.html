@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBook Google Antigravity - Panduan Manual SOP Visual (Non-Coder)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .glass-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
+        }
+        .sidebar-tab-btn {
+            transition: all 0.2s ease;
+        }
+        .sidebar-tab-btn.active {
+            background: #2563eb !important;
+            color: #ffffff !important;
+            border-color: #2563eb !important;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+        }
+        .sidebar-tab-btn.active .tab-icon {
+            color: #ffffff !important;
+        }
+        .step-badge {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1d4ed8;
+        }
+
+        pre, code, .font-mono {
+            white-space: pre-wrap !important;
+            word-break: break-word !important;
+            overflow-wrap: break-word !important;
+            max-width: 100% !important;
+        }
+
+        /* TRADEMARK WATERMARK STYLING */
+        .trademark-watermark {
+            mix-blend-mode: screen;
+            opacity: 0.95;
+            filter: drop-shadow(0 3px 8px rgba(225, 29, 72, 0.45));
+            transition: all 0.2s ease;
+        }
+        .trademark-watermark:hover {
+            opacity: 1;
+            transform: scale(1.03);
+        }
+
+        /* PRINT STYLING FIX: Prints ALL 17 Chapters in full! */
+        @media print {
+            aside, header, footer, #toast, #login-screen, button {
+                display: none !important;
+            }
+            body {
+                background: #ffffff !important;
+                color: #0f172a !important;
+            }
+            main {
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .tab-page {
+                display: block !important;
+                page-break-after: always;
+                margin-bottom: 2.5rem !important;
+            }
+            .glass-card {
+                background: #ffffff !important;
+                border: 1px solid #cbd5e1 !important;
+                box-shadow: none !important;
+            }
+            pre {
+                background: #f8fafc !important;
+                color: #0f172a !important;
+                border: 1px solid #94a3b8 !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col md:flex-row">
+
+    <!-- LOGIN SCREEN OVERLAY -->
+    <div id="login-screen" class="fixed inset-0 bg-slate-950/95 backdrop-blur-md z-50 flex items-center justify-center p-4 transition-all duration-300">
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-md w-full p-6 md:p-8 space-y-6 text-center relative overflow-hidden">
+            <!-- Background Decorative Glow -->
+            <div class="absolute -top-12 -right-12 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl"></div>
+            <div class="absolute -bottom-12 -left-12 w-40 h-40 bg-purple-500/10 rounded-full blur-2xl"></div>
+
+            <!-- Robot Mascot Avatar -->
+            <div class="relative inline-block mx-auto">
+                <div class="w-28 h-28 md:w-32 md:h-32 rounded-3xl overflow-hidden border-4 border-blue-500 shadow-xl mx-auto bg-gradient-to-tr from-blue-600 to-indigo-600 p-1">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI Mascot" class="w-full h-full object-cover rounded-2xl">
+                </div>
+                <span class="absolute -bottom-2 -right-2 bg-emerald-500 text-white w-8 h-8 rounded-full flex items-center justify-center border-2 border-white shadow-md text-xs">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </span>
+            </div>
+
+            <!-- Robot Welcome Message -->
+            <div class="space-y-2">
+                <div class="inline-flex items-center space-x-2 bg-blue-50 text-blue-700 px-3.5 py-1 rounded-full text-xs font-bold font-mono">
+                    <i class="fa-solid fa-robot"></i>
+                    <span>GOOGLE ANTIGRAVITY AI</span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Selamat Datang! 👋</h2>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed max-w-xs mx-auto">
+                    Hai! Sila masukkan <strong>PIN Akses Keselamatan</strong> di bawah untuk membuka eBook manual ini:
+                </p>
+            </div>
+
+            <!-- PIN Form Input -->
+            <form onsubmit="handleLogin(event)" class="space-y-4 pt-1">
+                <div class="space-y-2">
+                    <div class="relative">
+                        <input type="password" id="pin-input" maxlength="6" placeholder="• • • • • •" class="w-full text-center text-2xl font-mono tracking-[0.5em] px-4 py-3 rounded-2xl border-2 border-slate-200 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 outline-none transition bg-slate-50 font-bold text-slate-900" autofocus required>
+                    </div>
+                    <p id="login-error" class="text-xs font-bold text-red-600 hidden flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-circle-exclamation text-sm"></i>
+                        <span>PIN Tidak Sah! Sila cuba lagi.</span>
+                    </p>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center space-x-2 text-sm md:text-base">
+                    <i class="fa-solid fa-unlock-keyhole"></i>
+                    <span>Buka eBook Antigravity</span>
+                </button>
+            </form>
+
+            <div class="pt-2 border-t border-slate-100">
+                <p class="text-[11px] text-slate-400 font-mono">
+                    PIN Akses Rasmi: <strong class="text-blue-600 font-bold">469310</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEFT SIDEBAR NAVIGATION -->
+    <aside class="w-full md:w-80 bg-white border-r border-slate-200 flex flex-col shrink-0 sticky top-0 h-auto md:h-screen z-40 shadow-sm">
+        
+        <!-- Sidebar Brand Header with Official Google Antigravity Logo -->
+        <div class="p-4 border-b border-slate-200 flex items-center space-x-3 bg-slate-50">
+            <div class="w-12 h-12 rounded-2xl bg-white p-1 flex items-center justify-center border border-slate-200 shadow-md shrink-0">
+                <img src="images/google_antigravity_logo.png" alt="Official Google Antigravity Logo" class="w-full h-full object-contain">
+            </div>
+            <div>
+                <h1 class="text-base font-black tracking-tight text-slate-900 leading-tight">eBook Google Antigravity</h1>
+                <p class="text-xs text-slate-500 font-semibold flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                    <span>Panduan Manual SOP Non-Coder</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Sidebar Chapter Buttons List (Vertical Stack) -->
+        <div class="flex-1 overflow-y-auto p-3 space-y-1.5" id="sidebar-tabs-list">
+            <button id="tab-btn-1" onclick="showTab(1)" class="sidebar-tab-btn active w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">01. Pengenalan & SOP</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+            <button id="tab-btn-2" onclick="showTab(2)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">02. Manual Install</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+            <button id="tab-btn-3" onclick="showTab(3)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">03. ChatGPT Master Prompt</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+            <button id="tab-btn-4" onclick="showTab(4)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">04. Setup Folder & Path</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+            <button id="tab-btn-5" onclick="showTab(5)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">05. Launch Master Prompt</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+            <button id="tab-btn-6" onclick="showTab(6)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">06. Semak & Repair Ralat</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+            <button id="tab-btn-7" onclick="showTab(7)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">07. Koleksi 5 Prompt</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+            <button id="tab-btn-8" onclick="showTab(8)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">08. Tutorial Landing Page</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+            <button id="tab-btn-9" onclick="showTab(9)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">09. Tutorial Borang Data</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+            <button id="tab-btn-10" onclick="showTab(10)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">10. Tutorial Dashboard</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+            <button id="tab-btn-11" onclick="showTab(11)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">11. Troubleshooting Ralat</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+            <button id="tab-btn-12" onclick="showTab(12)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">12. Setup GitHub & Desktop</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+            <button id="tab-btn-13" onclick="showTab(13)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">13. Upload ke GitHub</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+            <button id="tab-btn-14" onclick="showTab(14)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">14. Publish Live Web URL</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+            <button id="tab-btn-15" onclick="showTab(15)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-slate-100 text-slate-700 flex items-center justify-between">
+                <span class="truncate">15. Kemas Kini Masa Hadapan</span>
+                <i class="fa-solid fa-chevron-right tab-icon text-xs text-slate-400"></i>
+            </button>
+
+            <div class="pt-2 border-t border-slate-200">
+                <span class="text-[10px] uppercase font-mono font-bold text-slate-400 px-3 tracking-wider block mb-1">MEDIA & LAMPIRAN</span>
+                <button id="tab-btn-16" onclick="showTab(16)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-red-50 text-red-700 flex items-center justify-between">
+                    <span class="truncate flex items-center"><i class="fa-solid fa-circle-play mr-2 text-red-600"></i>16. Rakaman Video Panduan</span>
+                    <i class="fa-solid fa-chevron-right tab-icon text-xs text-red-400"></i>
+                </button>
+                <button id="tab-btn-17" onclick="showTab(17)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-emerald-50 text-emerald-800 flex items-center justify-between">
+                    <span class="truncate flex items-center"><i class="fa-solid fa-images mr-2 text-emerald-600"></i>17. Lampiran Contoh Sistem</span>
+                    <i class="fa-solid fa-chevron-right tab-icon text-xs text-emerald-400"></i>
+                </button>
+                <button id="tab-btn-18" onclick="showTab(18)" class="sidebar-tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs md:text-sm font-bold border border-transparent hover:bg-blue-50 text-blue-800 flex items-center justify-between">
+                    <span class="truncate flex items-center"><i class="fa-solid fa-wand-magic-sparkles mr-2 text-blue-600"></i>18. Generator Master Prompt</span>
+                    <i class="fa-solid fa-chevron-right tab-icon text-xs text-blue-400"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar Footer Action & Compact Master Azrul Trademark -->
+        <div class="p-2 border-t border-slate-200 bg-slate-900 text-white space-y-1.5 shrink-0">
+            <div class="flex items-center justify-between px-1">
+                <span class="text-[10px] font-mono text-slate-400 font-bold tracking-wider">TRADEMARK:</span>
+                <img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-6 w-auto trademark-watermark object-contain">
+            </div>
+            <div class="grid grid-cols-2 gap-1.5">
+                <button onclick="window.print()" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-2 py-1.5 rounded-lg text-xs font-bold flex items-center justify-center space-x-1 transition shadow-sm">
+                    <i class="fa-solid fa-print text-[11px]"></i>
+                    <span>Cetak PDF</span>
+                </button>
+                <button onclick="handleLogout()" class="w-full bg-slate-800 hover:bg-red-600 text-slate-300 hover:text-white px-2 py-1.5 rounded-lg text-xs font-bold flex items-center justify-center space-x-1 transition shadow-sm border border-slate-700" title="Log Keluar Keselamatan">
+                    <i class="fa-solid fa-right-from-bracket text-[11px]"></i>
+                    <span>Log Keluar</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- RIGHT MAIN CONTENT AREA -->
+    <div class="flex-1 flex flex-col min-w-0">
+        
+        <!-- Header Action Bar with Official Google Antigravity Logo -->
+        <header class="bg-white border-b border-slate-200 px-6 py-3.5 flex items-center justify-between shadow-xs sticky top-0 z-30">
+            <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-2.5">
+                    <img src="images/google_antigravity_logo.png" alt="Google Antigravity Logo" class="h-8 w-auto object-contain">
+                    <span class="font-black text-slate-900 text-base hidden sm:inline">Google Antigravity</span>
+                </div>
+                <span class="inline-flex items-center space-x-1.5 bg-blue-50 text-blue-700 text-xs md:text-sm font-bold px-4 py-1.5 rounded-full border border-blue-200">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span id="current-chapter-indicator">Bab 1 daripada 18</span>
+                </span>
+            </div>
+
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <button id="btn-prev" onclick="prevTab()" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-3.5 py-2 rounded-xl text-xs md:text-sm font-bold transition flex items-center space-x-1.5 border border-slate-200 disabled:opacity-40 disabled:cursor-not-allowed">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span class="hidden sm:inline">Sebelumnya</span>
+                </button>
+                <button id="btn-next" onclick="nextTab()" class="bg-blue-600 hover:bg-blue-700 text-white px-3.5 py-2 rounded-xl text-xs md:text-sm font-bold transition flex items-center space-x-1.5 shadow-sm">
+                    <span class="hidden sm:inline">Seterusnya</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <button onclick="handleLogout()" class="bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 px-3.5 py-2 rounded-xl text-xs md:text-sm font-bold transition flex items-center space-x-1.5 shadow-xs" title="Log Keluar Keselamatan">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="hidden sm:inline">Log Keluar</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Viewport -->
+        <main class="flex-1 p-5 md:p-10 max-w-5xl mx-auto w-full">
+            
+            <!-- BAB 1 -->
+            <div id="tab-content-1" class="tab-page space-y-6">
+                <!-- HERO BANNER PENGENALAN ANTIGRAVITY BERSAMA MASCOT ROBOT -->
+                <div class="glass-card p-6 md:p-8 rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900 text-white relative overflow-hidden shadow-xl">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                        <div class="md:col-span-8 space-y-4">
+                            <span class="bg-blue-500/20 text-blue-300 border border-blue-400/30 px-3.5 py-1 rounded-full text-xs font-bold font-mono inline-block">BAB 01 • PENGENALAN RASMI</span>
+                            <h2 class="text-3xl md:text-4xl font-black text-white leading-tight">Selamat Datang Ke Google Antigravity! 🤖🚀</h2>
+                            <p class="text-blue-100 text-base md:text-lg leading-relaxed">
+                                Hai! Saya ialah **AI Robot Assistant Google Antigravity**. Saya akan membimbing anda langkah demi langkah dari Bab 1 hingga Bab 17 untuk membina pelbagai sistem web moden secara 100% tanpa perlu coding sebaris kod pun!
+                            </p>
+                            <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20 text-sm text-blue-100">
+                                💡 **Prinsip Utama:** Anda tidak perlu tahu HTML, CSS, JavaScript, mahupun pangkalan data. Anda hanya perlu bersembang dengan saya dalam Bahasa Melayu mudah!
+                            </div>
+                        </div>
+                        <div class="md:col-span-4 flex justify-center">
+                            <div class="relative group">
+                                <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+                                <img src="images/antigravity_robot_mascot.png" alt="Gambar Pengenalan Google Antigravity Robot Mascot" class="relative w-48 md:w-56 h-auto rounded-3xl object-cover shadow-2xl border-2 border-white/30">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-5">
+                    <h3 class="text-xl md:text-2xl font-bold text-slate-900"><i class="fa-solid fa-sitemap text-blue-600 mr-2.5"></i>Rajah Visual SOP Alur Kerja 6 Langkah Utama</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2.5 shadow-xs">
+                            <div class="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-base">1</div>
+                            <h4 class="font-bold text-slate-900 text-base">Install Antigravity</h4>
+                            <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Download installer rasmi & log masuk akaun Google.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2.5 shadow-xs">
+                            <div class="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-base">2</div>
+                            <h4 class="font-bold text-slate-900 text-base">Sembang ChatGPT & Salin Prompt</h4>
+                            <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Minta ChatGPT bina Master Prompt & SALIN teksnya.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2.5 shadow-xs">
+                            <div class="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-base">3</div>
+                            <h4 class="font-bold text-slate-900 text-base">Cipta Folder & Copy Path</h4>
+                            <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Salin pautan folder komputer & buka di Antigravity.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2.5 shadow-xs">
+                            <div class="w-9 h-9 rounded-xl bg-cyan-600 text-white flex items-center justify-center font-bold text-base">4</div>
+                            <h4 class="font-bold text-slate-900 text-base">Tampal Prompt ke Antigravity</h4>
+                            <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Tampal Master Prompt ke Antigravity & jana `index.html`.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2.5 shadow-xs">
+                            <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-base">5</div>
+                            <h4 class="font-bold text-slate-900 text-base">Semak & Uji di Browser</h4>
+                            <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Uji butang di browser & suruh Antigravity baiki ralat.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2.5 shadow-xs">
+                            <div class="w-9 h-9 rounded-xl bg-amber-600 text-white flex items-center justify-center font-bold text-base">6</div>
+                            <h4 class="font-bold text-slate-900 text-base">Publish ke GitHub Pages</h4>
+                            <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Muat naik di GitHub Desktop untuk pautan Live Web URL!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page Footer Watermark -->
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 2 -->
+            <div id="tab-content-2" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 2: Pemasangan Perisian</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Mula-mula sekali, kita perlu memuat turun installer perisian Google Antigravity di komputer anda dan log masuk akaun Google untuk mengaktifkannya!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+                    <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                        <img src="images/antigravity_interface_overview_1787390059506.jpg" alt="Antara Muka Antigravity 2.0 Mission Control" class="w-full h-auto object-cover">
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-3 py-1 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 2.1</span>
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg">Layari Portal Rasmi Muat Turun</h4>
+                            <p class="text-sm md:text-base text-slate-700 leading-relaxed">Buka Chrome atau Edge di komputer anda. Taip alamat: <code class="bg-slate-200 px-2 py-0.5 rounded text-slate-900 font-mono font-bold">https://antigravity.google/download</code> dan tekan Enter.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-3 py-1 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 2.2</span>
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg">Muat Turun Fail Installer</h4>
+                            <p class="text-sm md:text-base text-slate-700 leading-relaxed">Klik butang <strong>Download for Windows (.exe)</strong> atau <strong>Download for macOS (.dmg)</strong>. Fail akan disimpan di folder Downloads.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-3 py-1 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 2.3</span>
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg">Jalankan Setup Wizard</h4>
+                            <p class="text-sm md:text-base text-slate-700 leading-relaxed">Dwi-klik fail <code class="bg-slate-200 px-2 py-0.5 rounded text-slate-900 font-mono font-bold">AntigravitySetup-x64.exe</code> di folder Downloads. Tekan Next -> Install -> Finish.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-3 py-1 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 2.4</span>
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg">Log Masuk Akaun Google</h4>
+                            <p class="text-sm md:text-base text-slate-700 leading-relaxed">Buka perisian Antigravity, klik <strong>Log in with Google</strong>. Di pelayar web, pilih akaun Google anda dan tekan <strong>Allow / Benarkan</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 3 -->
+            <div id="tab-content-3" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 3: Sembang ChatGPT & Copy Prompt</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Buka ChatGPT.com dan beritahu ChatGPT apa yang anda mahu bina dalam Bahasa Melayu. Selepas ChatGPT menjana Master Prompt, tekan butang COPY!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+                    <div class="bg-blue-50 p-5 rounded-2xl border border-blue-200 space-y-3">
+                        <h3 class="text-base md:text-lg font-bold text-blue-950 flex items-center space-x-2"><i class="fa-solid fa-comments text-blue-600 text-xl"></i><span>Rajah Visual Alur Kerja Bab 3: ChatGPT -> Salin Master Prompt</span></h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-1"><b class="text-slate-900 block font-sans text-sm md:text-base">1. Buka ChatGPT.com</b><p class="text-xs md:text-sm text-slate-600 leading-relaxed">Taip idea sistem anda di ChatGPT dalam Bahasa Melayu harian.</p></div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-1"><b class="text-slate-900 block font-sans text-sm md:text-base">2. ChatGPT Jana Master Prompt</b><p class="text-xs md:text-sm text-slate-600 leading-relaxed">ChatGPT menulis arahan lengkap di dalam kotak teks.</p></div>
+                            <div class="bg-white p-4 rounded-xl border border-blue-300 space-y-1"><b class="text-blue-700 block font-sans text-sm md:text-base">3. Tekan Butang COPY!</b><p class="text-xs md:text-sm text-slate-700 font-bold leading-relaxed">Klik ikon Copy pada kotak ChatGPT (atau tekan Ctrl+C).</p></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4 shadow-md">
+                        <h4 class="font-bold text-cyan-400 text-base md:text-lg flex items-center space-x-2"><i class="fa-solid fa-copy"></i><span>Templat Master Prompt Universal (Salin Teks Ini Ke Google Antigravity)</span></h4>
+                        <pre class="bg-slate-950 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed" id="template-chatgpt">Saya mahu membina [NYATAKAN SISTEM / WEBSITE / DASHBOARD ANDA DI SINI]. 
+Saya tiada latar belakang coding langsung.
+
+Tolong buatkan satu fail index.html untuk sistem ini di Google Antigravity yang mengandungi:
+1. Membina fail paparan utama index.html menggunakan Tailwind CSS CDN dengan reka bentuk moden berasaskan Mod Gelap (Dark Mode).
+2. Menyediakan borang input maklumat dan semua butang (seperti Butang Simpan, Hantar, dan Padam) yang berfungsi 100%.
+3. Menyimpan semua data yang dimasukkan ke dalam memori tempatan pelayar (localStorage) supaya data tidak hilang apabila halaman di-refresh.
+4. Memastikan paparan kelihatan kemas dan mesra pengguna di skrin telefon bimbit serta komputer.</pre>
+                        <button onclick="copyElementText('template-chatgpt')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs md:text-sm font-bold px-5 py-2.5 rounded-xl transition flex items-center space-x-2 shadow-sm"><i class="fa-regular fa-copy"></i><span>Salin Teks Prompt Ke Antigravity</span></button>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 4 -->
+            <div id="tab-content-4" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 4: Setup Folder & Copy Path</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Cipta folder projek baharu di C:\antigravity\, klik kanan > Copy as path, kemudian buka di Open Workspace Antigravity!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-2.5 py-0.5 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 4.1</span>
+                            <h4 class="font-bold text-slate-900 text-base">Cipta Folder Baru</h4>
+                            <p class="text-xs md:text-sm text-slate-700 leading-relaxed">Buka File Explorer di <code class="bg-slate-200 px-1.5 py-0.5 rounded text-slate-900 font-mono font-bold">C:\antigravity\</code> > Klik kanan > New > Folder > Namakan: <code class="bg-slate-200 px-1.5 py-0.5 rounded text-slate-900 font-mono font-bold">SistemKehadiran</code>.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-2.5 py-0.5 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 4.2</span>
+                            <h4 class="font-bold text-slate-900 text-base">Copy Path Folder</h4>
+                            <p class="text-xs md:text-sm text-slate-700 leading-relaxed">Klik kanan folder <code class="bg-slate-200 px-1.5 py-0.5 rounded text-slate-900 font-mono font-bold">SistemKehadiran</code> > pilih <strong>Copy as path</strong> (Salin pautan folder).</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-2.5 py-0.5 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 4.3</span>
+                            <h4 class="font-bold text-slate-900 text-base">Tampal Path di Antigravity</h4>
+                            <p class="text-xs md:text-sm text-slate-700 leading-relaxed">Buka Antigravity > Klik <strong>Open Workspace</strong> > Tampal <code class="bg-slate-200 px-1.5 py-0.5 rounded text-slate-900 font-mono font-bold">C:\antigravity\SistemKehadiran</code> dan tekan Open.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 5 -->
+            <div id="tab-content-5" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 5: Launch Master Prompt</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Tampal Master Prompt yang disalin dari ChatGPT ke ruang perbualan Antigravity, tekan Enter, dan saya akan menyiapkan fail index.html untuk anda!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+                    <div class="bg-blue-50 p-5 rounded-2xl border border-blue-200 space-y-3">
+                        <h3 class="text-base md:text-lg font-bold text-blue-950 flex items-center space-x-2"><i class="fa-solid fa-paste text-blue-600 text-xl"></i><span>Rajah Visual Alur Kerja Bab 5: Tampal Master Prompt ke Antigravity</span></h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-1"><b class="text-slate-900 block font-sans text-sm md:text-base">1. Buka Google Antigravity</b><p class="text-xs md:text-sm text-slate-600 leading-relaxed">Pastikan folder projek anda di Bab 4 kelihatan aktif.</p></div>
+                            <div class="bg-white p-4 rounded-xl border border-blue-300 space-y-1"><b class="text-blue-700 block font-sans text-sm md:text-base">2. TAMPAL (PASTE) Prompt!</b><p class="text-xs md:text-sm text-slate-700 font-bold leading-relaxed">Tampal Master Prompt dari ChatGPT ke Chat Canvas (`Ctrl+V`).</p></div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-1"><b class="text-slate-900 block font-sans text-sm md:text-base">3. Tekan Enter / Send</b><p class="text-xs md:text-sm text-slate-600 leading-relaxed">AI Antigravity menulis fail `index.html` secara automatik!</p></div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                        <img src="images/antigravity_architecture_diagram_1787390040989.jpg" alt="Seni Bina Three Surfaces Google Antigravity" class="w-full h-auto object-cover">
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 6 -->
+            <div id="tab-content-6" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 6: Semakan & Repair Ralat</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Dwi-klik index.html di browser. Jika ada butang tak berfungsi, beritahu saya di Antigravity dan saya akan perbaiki serta-merta!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+                    <div class="space-y-4">
+                        <h3 class="text-base md:text-lg font-bold text-blue-950 flex items-center space-x-2"><i class="fa-solid fa-images text-blue-600 text-xl"></i><span>Rajah Visual Semakan & Ujian Sistem (3 Langkah Utama)</span></h3>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                            <div class="flex items-center justify-between border-b border-slate-200 pb-2"><span class="text-sm font-bold text-slate-900 flex items-center space-x-2"><span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold">1</span><span>Buka File Explorer & Dwi-Klik index.html</span></span><span class="text-xs bg-white text-slate-700 border border-slate-300 px-2.5 py-1 rounded font-mono font-bold">Folder: C:\antigravity\SistemSaya\</span></div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 flex items-center justify-between text-sm"><div class="flex items-center space-x-3"><i class="fa-brands fa-chrome text-amber-500 text-3xl"></i><div><b class="text-slate-900 block font-mono text-base">index.html</b><span class="text-xs md:text-sm text-slate-500">Chrome HTML Document • Dwi-Klik Untuk Buka</span></div></div><span class="bg-blue-50 text-blue-700 px-4 py-2 rounded-xl font-bold text-xs md:text-sm border border-blue-200"><i class="fa-solid fa-mouse-pointer mr-1"></i>Double-Click!</span></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-3 text-xs md:text-sm shadow-md">
+                        <h4 class="font-bold text-cyan-400 text-base md:text-lg">Templat Arahan Membaiki (Repair Prompts):</h4>
+                        <pre class="bg-slate-950 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed">"Saya telah uji index.html di browser. Bila saya tekan butang 'Simpan', data tidak muncul dalam jadual. Tolong baiki fungsi butang Simpan ini supaya ia menyimpan data 100%."</pre>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 7 -->
+            <div id="tab-content-7" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 7: Koleksi 5 Master Prompt</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Pilih mana-mana prompt di bawah mengikut jenis sistem yang anda mahu bina (Sistem, Dashboard, Website, Game, Playbook) & tekan Salin!"</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- 1. MEMBINA SISTEM -->
+                    <div class="glass-card p-6 rounded-2xl space-y-4 border border-slate-200">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg flex items-center space-x-2.5"><span class="w-7 h-7 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-sm font-bold">1</span><span>Master Prompt: Membina Sistem (Kehadiran & Data Staf)</span></h4>
+                            <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-mono font-bold">Kategori Sistem</span>
+                        </div>
+                        <pre class="bg-slate-900 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed" id="prompt-p1">Bina Sistem Pengurusan Kehadiran Staf Harian di fail index.html menggunakan Tailwind CSS CDN (Mod Gelap).
+
+Keperluan Utama:
+1. Borang pendaftaran: Nama Staf, Tarikh, Masa Clock-in, dan Pilihan Status (Hadir / Cuti / Sakit).
+2. Butang "Simpan Kehadiran".
+3. Jadual senarai kehadiran staf di bawah borang yang menyimpan data secara kekal di dalam localStorage.
+4. Butang "Padam Rekod" pada setiap baris jadual untuk memadam rekod tertentu.
+5. Petak carian (Search Bar) untuk menapis nama staf secara automatik.</pre>
+                        <button onclick="copyElementText('prompt-p1')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs md:text-sm font-bold px-5 py-2.5 rounded-xl transition shadow-sm"><i class="fa-regular fa-copy"></i><span>Salin Prompt Sistem</span></button>
+                    </div>
+
+                    <!-- 2. MEMBINA DASHBOARD -->
+                    <div class="glass-card p-6 rounded-2xl space-y-4 border border-slate-200">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg flex items-center space-x-2.5"><span class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-sm font-bold">2</span><span>Master Prompt: Membina Dashboard (Admin Jualan & Carta Visual)</span></h4>
+                            <span class="text-xs bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full font-mono font-bold">Kategori Dashboard</span>
+                        </div>
+                        <pre class="bg-slate-900 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed" id="prompt-p2">Bina Admin Dashboard Pengurusan Jualan Moden di fail index.html menggunakan Tailwind CSS CDN (Mod Gelap).
+
+Keperluan Utama:
+1. 4 Kad Statistik KPI: Total Jualan (RM50,000), Jumlah Pesanan (1,200), Pelanggan Baharu (850), dan Kadar Kejayaan (98.5%).
+2. Carta Trend Jualan Bulanan interaktif menggunakan skrip Chart.js CDN.
+3. Jadual Transaksi Terkini mengandungi ID Pesanan, Nama Pelanggan, Jumlah (RM), dan Badge Status (Hijau = Kejayaan, Kuning = Menunggu, Merah = Gagal).</pre>
+                        <button onclick="copyElementText('prompt-p2')" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs md:text-sm font-bold px-5 py-2.5 rounded-xl transition shadow-sm"><i class="fa-regular fa-copy"></i><span>Salin Prompt Dashboard</span></button>
+                    </div>
+
+                    <!-- 3. MEMBINA LAMAN WEB -->
+                    <div class="glass-card p-6 rounded-2xl space-y-4 border border-slate-200">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg flex items-center space-x-2.5"><span class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm font-bold">3</span><span>Master Prompt: Membina Laman Web (Landing Page Perniagaan)</span></h4>
+                            <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-mono font-bold">Kategori Website</span>
+                        </div>
+                        <pre class="bg-slate-900 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed" id="prompt-p3">Bina Landing Page moden perniagaan "Katering Enak Rasa" di fail index.html menggunakan Tailwind CSS CDN.
+
+Keperluan Utama:
+1. Header & Navigation Bar dengan logo "Katering Enak Rasa" dan butang CTA "Hubungi Kami".
+2. Hero Section: Tajuk gradient menawan, penerangan ringkas, dan butang tempahan.
+3. 3 Kad Pakej Hidangan: Pakej Hemat (RM15/pax), Pakej Selera (RM25/pax), Pakej VIP (RM45/pax).
+4. Borang Pertanyaan Tempahan: Nama, Nombor WhatsApp, Tarikh Majlis, dan Jumlah Tetamu.
+5. Footer lengkap dengan lokasi pejabat dan pautan media sosial.</pre>
+                        <button onclick="copyElementText('prompt-p3')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs md:text-sm font-bold px-5 py-2.5 rounded-xl transition shadow-sm"><i class="fa-regular fa-copy"></i><span>Salin Prompt Website</span></button>
+                    </div>
+
+                    <!-- 4. MEMBINA PLATFORM GAME -->
+                    <div class="glass-card p-6 rounded-2xl space-y-4 border border-slate-200">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg flex items-center space-x-2.5"><span class="w-7 h-7 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-sm font-bold">4</span><span>Master Prompt: Membina Platform Game (Arcade Game HTML5)</span></h4>
+                            <span class="text-xs bg-purple-100 text-purple-800 px-3 py-1 rounded-full font-mono font-bold">Kategori Game</span>
+                        </div>
+                        <pre class="bg-slate-900 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed" id="prompt-p4">Bina Platform Permainan Mini (Mini-Game Arcade) di fail index.html menggunakan Tailwind CSS CDN.
+
+Keperluan Utama:
+1. Tajuk Utama: "Pusat Permainan Arcade Interaktif".
+2. Game 1: Permainan Tic-Tac-Toe (X dan O) 2 pemain yang boleh dimainkan secara interaktif di skrin.
+3. Game 2: Permainan Kuiz Pengetahuan Umum dengan 5 soalan berbilang pilihan dan paparan markah akhir.
+4. Paparan Skor Tertinggi (High Score Leaderboard) yang disimpan di dalam localStorage.</pre>
+                        <button onclick="copyElementText('prompt-p4')" class="bg-purple-600 hover:bg-purple-700 text-white text-xs md:text-sm font-bold px-5 py-2.5 rounded-xl transition shadow-sm"><i class="fa-regular fa-copy"></i><span>Salin Prompt Game</span></button>
+                    </div>
+
+                    <!-- 5. MEMBINA PLAYBOOK -->
+                    <div class="glass-card p-6 rounded-2xl space-y-4 border border-slate-200">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg flex items-center space-x-2.5"><span class="w-7 h-7 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-sm font-bold">5</span><span>Master Prompt: Membina Playbook (Laman Web Dokumentasi Tabbed)</span></h4>
+                            <span class="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-mono font-bold">Kategori Playbook</span>
+                        </div>
+                        <pre class="bg-slate-900 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed" id="prompt-p5">Bina Laman Web Playbook Interaktif Tabbed di fail index.html menggunakan Tailwind CSS CDN.
+
+Keperluan Utama:
+1. Header atas dengan tajuk "Playbook Panduan Pengguna".
+2. Bar Navigasi Tab Horizontal di atas untuk bertukar bab (Bab 1, Bab 2, Bab 3, Bab 4, Bab 5).
+3. Kandungan setiap bab dipaparkan mengikut tab yang dipilih secara serta-merta tanpa refresh halaman.
+4. Butang "Bab Sebelumnya" dan "Bab Seterusnya" di bahagian bawah skrin untuk pembacaan lancar.</pre>
+                        <button onclick="copyElementText('prompt-p5')" class="bg-amber-600 hover:bg-amber-700 text-white text-xs md:text-sm font-bold px-5 py-2.5 rounded-xl transition shadow-sm"><i class="fa-regular fa-copy"></i><span>Salin Prompt Playbook</span></button>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 8 -->
+            <div id="tab-content-8" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 8: Tutorial Landing Page Katering</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Jom ikuti tutorial bergambar ini untuk membina Landing Page perniagaan katering anda yang pertama!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+                    <div class="space-y-4">
+                        <h3 class="text-base md:text-lg font-bold text-blue-950 flex items-center space-x-2"><i class="fa-solid fa-layer-group text-blue-600 text-xl"></i><span>Langkah demi Langkah Pembinaan (Visual Interaktif)</span></h3>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2"><span class="step-badge px-2 py-0.5 rounded font-bold font-mono text-xs">LANGKAH 1</span><b class="text-slate-900 block text-sm">Cipta Folder Projek</b><p class="text-xs md:text-sm text-slate-600 leading-relaxed">Buka File Explorer di <code class="bg-slate-200 px-1 py-0.5 rounded text-slate-900 font-mono font-bold">C:\antigravity\</code> > Cipta folder: <code class="bg-slate-200 px-1 py-0.5 rounded text-slate-900 font-mono font-bold">LandingPageKatering</code>.</p></div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2"><span class="step-badge px-2 py-0.5 rounded font-bold font-mono text-xs">LANGKAH 2</span><b class="text-slate-900 block text-sm">Copy Path Folder</b><p class="text-xs md:text-sm text-slate-600 leading-relaxed">Klik kanan folder > pilih <strong>Copy as path</strong> > Tampal di Open Workspace Antigravity.</p></div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2"><span class="step-badge px-2 py-0.5 rounded font-bold font-mono text-xs">LANGKAH 3</span><b class="text-slate-900 block text-sm">Tampal Master Prompt</b><p class="text-xs md:text-sm text-slate-600 leading-relaxed">Tampal Master Prompt Katering di bawah & biarkan AI membina <code class="bg-slate-200 px-1 py-0.5 rounded text-slate-900 font-mono font-bold">index.html</code>.</p></div>
+                            <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 space-y-2"><span class="bg-emerald-200 text-emerald-800 px-2 py-0.5 rounded font-bold font-mono text-xs">LANGKAH 4</span><b class="text-emerald-900 block text-sm">Tinjau Web Live!</b><p class="text-xs md:text-sm text-slate-700 leading-relaxed">Dwi-klik <code class="bg-emerald-100 px-1 py-0.5 rounded text-slate-900 font-mono font-bold">index.html</code> untuk melihat laman web anda beraksi di pelayar Chrome!</p></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4 shadow-md">
+                        <div class="flex items-center justify-between"><span class="text-sm font-bold text-cyan-400"><i class="fa-solid fa-code mr-1.5"></i>Master Prompt Landing Page Katering</span><button onclick="copyElementText('prompt-kat')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-xl transition shadow-sm"><i class="fa-regular fa-copy mr-1"></i>Salin Prompt Katering</button></div>
+                        <pre class="bg-slate-950 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed" id="prompt-kat">Bina Landing Page perniagaan "Katering Enak Rasa" di fail index.html menggunakan Tailwind CSS CDN.
+
+Sertakan:
+1. Header & Navbar dengan logo "Katering Enak Rasa" dan butang "Hubungi Kami".
+2. Tajuk Utama: "Perkhidmatan Katering Majlis Perniagaan & Perkahwinan Terbaik".
+3. 3 Kad Pakej Hidangan: Pakej Hemat (RM15/pax), Pakej Selera (RM25/pax), Pakej VIP (RM45/pax).
+4. Borang Pertanyaan Tempahan: Nama, Nombor WhatsApp, Tarikh Majlis, dan Jumlah Tetamu.
+5. Footer lengkap dengan lokasi pejabat dan pautan media sosial.</pre>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 9 -->
+            <div id="tab-content-9" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 9: Tutorial Borang Data Staf</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Mari bina Sistem Kehadiran Staf yang boleh menyimpan data pendaftaran borang secara kekal di komputer anda!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+                    <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4 shadow-md">
+                        <div class="flex items-center justify-between"><span class="text-sm font-bold text-cyan-400"><i class="fa-solid fa-code mr-1.5"></i>Master Prompt Sistem Kehadiran Staf</span><button onclick="copyElementText('prompt-tut2')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-xl transition shadow-sm"><i class="fa-regular fa-copy mr-1"></i>Salin Prompt Borang</button></div>
+                        <pre class="bg-slate-950 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed" id="prompt-tut2">Bina Sistem Pengurusan Kehadiran Staf Harian di fail index.html menggunakan Tailwind CSS CDN (Mod Gelap).
+
+Keperluan Utama:
+1. Borang pendaftaran: Nama Staf, Tarikh, Masa Clock-in, dan Pilihan Status (Hadir / Cuti / Sakit).
+2. Butang "Simpan Kehadiran".
+3. Jadual senarai kehadiran staf di bawah borang yang menyimpan data secara kekal di dalam localStorage.
+4. Butang "Padam Rekod" pada setiap baris jadual untuk memadam rekod tertentu.
+5. Petak carian (Search Bar) untuk menapis nama staf secara automatik.</pre>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 10 -->
+            <div id="tab-content-10" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 10: Tutorial Admin Dashboard</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Bina Admin Dashboard yang cantik berserta 4 kad statistik KPI dan carta graf jualan bulanan interaktif!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+                    <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4 shadow-md">
+                        <div class="flex items-center justify-between"><span class="text-sm font-bold text-cyan-400"><i class="fa-solid fa-code mr-1.5"></i>Master Prompt Admin Dashboard Analitik</span><button onclick="copyElementText('prompt-tut3')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-xl transition shadow-sm"><i class="fa-regular fa-copy mr-1"></i>Salin Prompt Dashboard</button></div>
+                        <pre class="bg-slate-950 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed" id="prompt-tut3">Bina Admin Dashboard Pengurusan Jualan Moden di fail index.html menggunakan Tailwind CSS CDN (Mod Gelap).
+
+Keperluan Utama:
+1. 4 Kad Statistik KPI: Total Jualan (RM50,000), Jumlah Pesanan (1,200), Pelanggan Baharu (850), dan Kadar Kejayaan (98.5%).
+2. Carta Trend Jualan Bulanan interaktif menggunakan skrip Chart.js CDN.
+3. Jadual Transaksi Terkini mengandungi ID Pesanan, Nama Pelanggan, Jumlah (RM), dan Badge Status (Hijau = Kejayaan, Kuning = Menunggu, Merah = Gagal).</pre>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 11 -->
+            <div id="tab-content-11" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 11: Troubleshooting Ralat</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Jangan risau jika berlakunya ralat! Salin sahaja mana-mana arahan membaiki 5 ralat lazim di bawah ini dan tampal kepada saya!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+                    <div class="space-y-5 text-sm">
+                        <div class="bg-red-50 p-5 rounded-2xl border border-red-200 space-y-2.5">
+                            <b class="text-red-900 text-base block font-bold">🔴 Masalah 1: Butang Simpan / Hantar Tidak Bertindak Apabila Ditekan</b>
+                            <p class="text-slate-700 leading-relaxed">Salin dan tampal arahan ini ke perbualan Antigravity:</p>
+                            <pre class="bg-slate-900 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed">Saya dah uji index.html di browser. Bila saya tekan butang 'Simpan', tiada apa yang berlaku dan data tidak dipaparkan. Tolong baiki fungsi butang Simpan ini supaya ia menyimpan data 100%.</pre>
+                        </div>
+
+                        <div class="bg-red-50 p-5 rounded-2xl border border-red-200 space-y-2.5">
+                            <b class="text-red-900 text-base block font-bold">🔴 Masalah 2: Data Hilang Apabila Halaman Di-Refresh</b>
+                            <p class="text-slate-700 leading-relaxed">Salin dan tampal arahan ini ke perbualan Antigravity:</p>
+                            <pre class="bg-slate-900 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed">Bila saya refresh halaman web, semua data yang saya isi tadi telah hilang. Tolong baiki supaya semua data disimpan di dalam localStorage secara kekal.</pre>
+                        </div>
+
+                        <div class="bg-red-50 p-5 rounded-2xl border border-red-200 space-y-2.5">
+                            <b class="text-red-900 text-base block font-bold">🔴 Masalah 3: Tampilan Terabur Di Skrin Telefon Bimbit</b>
+                            <p class="text-slate-700 leading-relaxed">Salin dan tampal arahan ini ke perbualan Antigravity:</p>
+                            <pre class="bg-slate-900 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed">Paparan borang kelihatan terlalu rapat dan bertindih bila dibuka di skrin telefon. Tolong kemaskan reka bentuk Tailwind CSS supaya mesra skrin telefon bimbit.</pre>
+                        </div>
+
+                        <div class="bg-red-50 p-5 rounded-2xl border border-red-200 space-y-2.5">
+                            <b class="text-red-900 text-base block font-bold">🔴 Masalah 4: Skrin Putih Kosong</b>
+                            <p class="text-slate-700 leading-relaxed">Salin dan tampal arahan ini ke perbualan Antigravity:</p>
+                            <pre class="bg-slate-900 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed">Fail index.html memaparkan skrin putih kosong di browser. Tolong imbas ralat di dalam kod dan baiki supaya paparan muncul semula dengan betul.</pre>
+                        </div>
+
+                        <div class="bg-red-50 p-5 rounded-2xl border border-red-200 space-y-2.5">
+                            <b class="text-red-900 text-base block font-bold">🔴 Masalah 5: Imej / Gambar Tidak Muncul Di Laman Web</b>
+                            <p class="text-slate-700 leading-relaxed">Salin dan tampal arahan ini ke perbualan Antigravity:</p>
+                            <pre class="bg-slate-900 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed">Gambar di bahagian Hero Section tidak muncul dan menunjukkan ikon rosak. Tolong gantikan pautan imej tersebut dengan imej placeholder Unsplash yang sah dan cantik.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 12 -->
+            <div id="tab-content-12" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 12: Setup GitHub & Desktop</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Sediakan akaun GitHub.com percuma & muat turun aplikasi visual GitHub Desktop untuk proses penerbitan laman web awam!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+                    <div class="space-y-4 text-sm">
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-2.5 py-0.5 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 12.1</span>
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg">Cipta Akaun GitHub Percuma</h4>
+                            <p class="text-sm md:text-base text-slate-700 leading-relaxed">Layari <code class="bg-slate-200 px-1.5 py-0.5 rounded text-slate-900 font-mono font-bold">https://github.com/signup</code>. Masukkan e-mel anda, cipta kata laluan (*password*), dan nama pengguna (*username*). Selesaikan pengesahan e-mel.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-2.5 py-0.5 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 12.2</span>
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg">Muat Turun Aplikasi GitHub Desktop</h4>
+                            <p class="text-sm md:text-base text-slate-700 leading-relaxed">Layari <code class="bg-slate-200 px-1.5 py-0.5 rounded text-slate-900 font-mono font-bold">https://desktop.github.com/</code>. Klik <strong>Download for Windows</strong> (atau Mac) dan jalankan pemasangan di komputer anda.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-2.5 py-0.5 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 12.3</span>
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg">Log Masuk di GitHub Desktop</h4>
+                            <p class="text-sm md:text-base text-slate-700 leading-relaxed">Buka aplikasi GitHub Desktop, klik <strong>Sign in to GitHub.com</strong>. Pelayar web anda akan mengesahkan pendaftaran log masuk secara automatik!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 13 -->
+            <div id="tab-content-13" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 13: Upload ke GitHub</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Buka GitHub Desktop, pilih folder projek anda di komputer, dan tekan butang biru Publish Repository!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+                    <div class="space-y-4 text-sm">
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-2.5 py-0.5 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 13.1</span>
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg">Tambah Folder Projek di GitHub Desktop</h4>
+                            <p class="text-sm md:text-base text-slate-700 leading-relaxed">Buka GitHub Desktop > Klik menu <strong>File</strong> > pilih <strong>Add Local Repository...</strong> > Klik <strong>Choose...</strong> > Pilih folder projek anda di komputer (contoh: <code class="bg-slate-200 px-1.5 py-0.5 rounded text-slate-900 font-mono font-bold">C:\antigravity\LandingPageKatering</code>).</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-2.5 py-0.5 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 13.2</span>
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg">Cipta Repositori Baharu</h4>
+                            <p class="text-sm md:text-base text-slate-700 leading-relaxed">Jika muncul dialog "Create a Repository", masukkan nama repositori (contoh: <code class="bg-slate-200 px-1.5 py-0.5 rounded text-slate-900 font-mono font-bold">katering-enak-rasa</code>) dan klik <strong>Create Repository</strong>.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-2.5 py-0.5 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 13.3</span>
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg">Muat Naik Ke GitHub.com (Publish)</h4>
+                            <p class="text-sm md:text-base text-slate-700 leading-relaxed">Klik butang biru <strong>Publish repository</strong> di bahagian atas > Nyah-tanda (*uncheck*) <em>"Keep this code private"</em> > Klik <strong>Publish Repository</strong>. Semua fail anda kini selamat diunggah ke GitHub!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 14 -->
+            <div id="tab-content-14" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 14: Publish Live Web URL</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Aktifkan GitHub Pages di Settings > Pages, tukar branch ke `main` & dapatkan pautan laman web awam anda!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+                    <div class="bg-emerald-50 border border-emerald-200 p-5 rounded-2xl text-sm space-y-1">
+                        <b class="text-emerald-900 block text-base md:text-lg">🎉 Tahniah! Laman Web Anda Kini Live Di Awam!</b>
+                        <p class="text-emerald-800 font-mono text-xs md:text-sm">Your site is live at: <a href="#" class="text-blue-700 underline font-bold">https://username.github.io/katering-enak-rasa/</a></p>
+                    </div>
+
+                    <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                        <img src="images/antigravity_vs_others_1787390077920.jpg" alt="Carta Perbandingan AI Tools" class="w-full h-auto object-cover">
+                    </div>
+
+                    <div class="space-y-4 text-sm">
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-2.5 py-0.5 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 14.1</span>
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg">Buka Repositori di GitHub.com</h4>
+                            <p class="text-sm md:text-base text-slate-700 leading-relaxed">Di aplikasi GitHub Desktop, klik butang <strong>View on GitHub</strong> (atau tekan Ctrl+Shift+G). Pelayar web anda akan membuka repositori di GitHub.com.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-2.5 py-0.5 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 14.2</span>
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg">Buka Menu Settings > Pages</h4>
+                            <p class="text-sm md:text-base text-slate-700 leading-relaxed">Di bahagian atas repositori, klik tab <strong>Settings</strong> (ikon roda gerigi). Di menu sebelah kiri (*sidebar*), tatal ke bawah dan klik pada <strong>Pages</strong>.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-2.5 py-0.5 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 14.3</span>
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg">Tukar Branch Ke `main` & Simpan</h4>
+                            <p class="text-sm md:text-base text-slate-700 leading-relaxed">Di bawah bahagian <strong>Branch</strong>, tukar pilihan daripada <em>None</em> kepada <strong>`main`</strong> (atau `master`). Klik <strong>Save</strong>.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-2">
+                            <span class="step-badge px-2.5 py-0.5 rounded font-bold font-mono text-xs md:text-sm">LANGKAH 14.4</span>
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg">Salin Pautan Awam (Live URL)</h4>
+                            <p class="text-sm md:text-base text-slate-700 leading-relaxed">Tunggu 1 hingga 2 minit, kemudian refresh halaman tersebut. Salin pautan hijau <code class="bg-emerald-100 px-1.5 py-0.5 rounded text-slate-900 font-mono font-bold">https://username.github.io/nama-projek/</code>. Pautan ini kini sedia dihantar kepada pelanggan atau dikongsi di media sosial!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 15 -->
+            <div id="tab-content-15" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 15: Kemas Kini Masa Hadapan</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Di masa hadapan, hanya minta saya buat perubahan di Antigravity, kemudian tekan Push Origin di GitHub Desktop!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3 text-sm md:text-base">
+                        <h4 class="font-bold text-slate-900 text-base md:text-lg">Cara Kemas Kini Laman Web Di Masa Hadapan:</h4>
+                        <ol class="list-decimal list-inside space-y-2 text-slate-700 leading-relaxed">
+                            <li>Buka <strong>Antigravity</strong> dan pilih folder projek anda di komputer.</li>
+                            <li>Taip arahan perubahan di perbualan (contoh: <em>"Tolong tambah butang WhatsApp di bahagian bawah"</em>).</li>
+                            <li>Selepas Antigravity siap mengemaskini `index.html`, buka <strong>GitHub Desktop</strong>.</li>
+                            <li>Masukkan mesej ringkas di kotak Summary dan tekan <strong>Commit to main</strong> -> <strong>Push origin</strong>.</li>
+                            <li>Laman web awam anda di GitHub Pages akan dikemaskini secara automatik di internet dalam beberapa minit!</li>
+                        </ol>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-2xl text-center space-y-4 bg-gradient-to-br from-blue-900 to-indigo-900 text-white shadow-lg">
+                        <h3 class="text-2xl md:text-3xl font-black text-white">Tahniah! Anda Kini Bersedia Membina Sistem Idaman Anda! 🚀</h3>
+                        <p class="text-blue-100 text-sm md:text-base max-w-xl mx-auto leading-relaxed">Dengan alur kerja SOP 6 langkah ini, anda boleh membina seberapa banyak laman web dan sistem yang anda inginkan tanpa perlu belajar coding!</p>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 16: RAKAMAN VIDEO PANDUAN -->
+            <div id="tab-content-16" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 16: Rakaman Video Panduan</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Saksikan rakaman video tutorial rasmi di bawah ini untuk melihat demo pengoperasian Antigravity secara praktikal!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl border border-red-200 bg-gradient-to-br from-red-50/50 via-white to-white">
+                    <span class="bg-red-100 text-red-700 border border-red-200 px-3.5 py-1 rounded-full text-xs md:text-sm font-bold font-mono">BAB 16 • MEDIA VIDEO</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-2.5 mb-3">🎥 Rakaman Video Panduan Operasi Google Antigravity</h2>
+                    <p class="text-slate-700 text-base md:text-lg leading-relaxed">Saksikan rakaman video tutorial rasmi langkah demi langkah menunjukkan cara pengoperasian penuh Google Antigravity untuk pengguna Non-Coder.</p>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl space-y-6">
+                    <div class="bg-slate-900 p-4 md:p-6 rounded-2xl border border-slate-800 space-y-4 shadow-xl">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+                                <span class="text-xs md:text-sm text-slate-300 font-mono ml-2 font-bold">Google Drive Video Player</span>
+                            </div>
+                            <a href="https://drive.google.com/file/d/1pDc1bFtIJx5Kc0fdyslkuQFLolbiccbm/view?usp=drivesdk" target="_blank" class="bg-red-600 hover:bg-red-700 text-white text-xs md:text-sm font-bold px-3.5 py-1.5 rounded-xl transition flex items-center space-x-1.5">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                <span>Buka Di Google Drive</span>
+                            </a>
+                        </div>
+                        <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black border border-slate-800 shadow-inner">
+                            <iframe src="https://drive.google.com/file/d/1pDc1bFtIJx5Kc0fdyslkuQFLolbiccbm/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 17: LAMPIRAN CONTOH SISTEM -->
+            <div id="tab-content-17" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT EXPLANATION BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2"><span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-robot"></i><span>Panduan AI Antigravity:</span></span><b class="text-sm font-bold text-blue-900">Bab 17: Lampiran Contoh Sistem</b></div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">"Lihat 3 sistem sebenar yang dah berjaya dibangunkan di bawah ini! Anda juga boleh bina sistem seperti ini!"</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50/50 via-white to-white">
+                    <span class="bg-emerald-100 text-emerald-800 border border-emerald-200 px-3.5 py-1 rounded-full text-xs md:text-sm font-bold font-mono">BAB 17 • LAMPIRAN PROJEK</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 mt-2.5 mb-3">🖼️ Lampiran Contoh Sistem Yang Telah Dibangunkan</h2>
+                    <p class="text-slate-700 text-base md:text-lg leading-relaxed">Koleksi 3 bukti sebenar sistem pengurusan, portal awam, dan aplikasi interaktif yang telah berjaya dibangunkan 100% menggunakan Google Antigravity tanpa sebaris kod pun!</p>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- SISTEM 1 -->
+                    <div class="glass-card p-6 md:p-8 rounded-2xl space-y-5 border border-slate-200 shadow-md">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                            <div><span class="bg-blue-100 text-blue-800 text-xs font-bold font-mono px-3 py-1 rounded-full">CONTOH 01</span><h3 class="text-xl md:text-2xl font-black text-slate-900 mt-1">ZEROLAPAR Politeknik METRO TG (Portal Pelajar & Pengguna)</h3></div>
+                            <span class="bg-emerald-100 text-emerald-800 text-xs md:text-sm font-bold px-3 py-1 rounded-xl">Status: 100% Berfungsi</span>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-md"><img src="images/contoh_sistem_zerolapar.png" alt="Sistem ZeroLapar Politeknik METRO TG" class="w-full h-auto object-cover"></div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs md:text-sm">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1"><b class="text-slate-900 block font-bold">1. Multi-Portal Access</b><p class="text-slate-600">View Pelajar, View Peniaga, View NGO, dan Pentadbir Utama PMTG.</p></div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1"><b class="text-slate-900 block font-bold">2. Penyenaraian Makanan</b><p class="text-slate-600">Kad hidangan diskaun (Jimat 63%) & 100% Donasi Makanan Percuma.</p></div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1"><b class="text-slate-900 block font-bold">3. Admin Control Panel</b><p class="text-slate-600">Fungsi Edit & Padam hidangan secara langsung tanpa sentuh kod.</p></div>
+                        </div>
+                    </div>
+
+                    <!-- SISTEM 2 -->
+                    <div class="glass-card p-6 md:p-8 rounded-2xl space-y-5 border border-slate-200 shadow-md">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                            <div><span class="bg-cyan-100 text-cyan-800 text-xs font-bold font-mono px-3 py-1 rounded-full">CONTOH 02</span><h3 class="text-xl md:text-2xl font-black text-slate-900 mt-1">HYGIENE HERO (Platform Interaktif Booth & Kuiz)</h3></div>
+                            <span class="bg-emerald-100 text-emerald-800 text-xs md:text-sm font-bold px-3 py-1 rounded-xl">Status: 100% Berfungsi</span>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-md"><img src="images/contoh_sistem_hygiene_hero.png" alt="Platform Hygiene Hero Interaktif Booth" class="w-full h-auto object-cover"></div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs md:text-sm">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1"><b class="text-slate-900 block font-bold">1. 5 Modul Interaktif</b><p class="text-slate-600">Teka Silang Kata, Demo Video, Kuiz Hand Wash, Info Kuman, Roda Soalan.</p></div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1"><b class="text-slate-900 block font-bold">2. Demonstrasi Video WHO</b><p class="text-slate-600">Panduan 7 Teknik Cucian Tangan Sempurna berserta animasi interaktif.</p></div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1"><b class="text-slate-900 block font-bold">3. Pelbagai Bahasa (BM / EN)</b><p class="text-slate-600">Butang penukaran bahasa serta-merta di bahagian header atas.</p></div>
+                        </div>
+                    </div>
+
+                    <!-- SISTEM 3 -->
+                    <div class="glass-card p-6 md:p-8 rounded-2xl space-y-5 border border-slate-200 shadow-md">
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                            <div><span class="bg-purple-100 text-purple-800 text-xs font-bold font-mono px-3 py-1 rounded-full">CONTOH 03</span><h3 class="text-xl md:text-2xl font-black text-slate-900 mt-1">SISTEM MAKLUMAT PELAJAR (Dashboard Analisis Sosioekonomi)</h3></div>
+                            <span class="bg-emerald-100 text-emerald-800 text-xs md:text-sm font-bold px-3 py-1 rounded-xl">Status: 100% Berfungsi</span>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-md"><img src="images/contoh_sistem_maklumat_pelajar.png" alt="Dashboard Sistem Maklumat Pelajar" class="w-full h-auto object-cover"></div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs md:text-sm">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1"><b class="text-slate-900 block font-bold">1. Live Sync Google Sheet</b><p class="text-slate-600">Pautan data automatik 23 Rekod Pelajar & Eksport CSV / Cetak Laporan PDF.</p></div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1"><b class="text-slate-900 block font-bold">2. Kad Statistik KPI</b><p class="text-slate-600">Jumlah Pelajar (23), Purata Pendapatan (RM3,393), % B40 (87%), Anak Yatim (4).</p></div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1"><b class="text-slate-900 block font-bold">3. Carta Analitik Sosioekonomi</b><p class="text-slate-600">Carta Bar Status Pekerjaan Penjaga & Carta Pie Agihan B40/M40/T20.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+            <!-- BAB 18: GENERATOR MASTER PROMPT ANTIGRAVITY -->
+            <div id="tab-content-18" class="tab-page hidden space-y-6">
+                <!-- AI MASCOT BANNER -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-white border border-blue-200 p-5 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-sm">
+                    <img src="images/antigravity_robot_mascot.png" alt="Google Antigravity Robot AI" class="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-blue-400 shadow-md shrink-0">
+                    <div class="space-y-1.5 text-slate-800">
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <span>Generator Prompt AI:</span>
+                            </span>
+                            <b class="text-sm font-bold text-blue-900">Bab 18: Jana Master Prompt Anda</b>
+                        </div>
+                        <p class="text-sm md:text-base font-medium text-slate-700 leading-relaxed">
+                            "Hai! Isikan 9 maklumat asas di bawah, kemudian tekan butang **⚡ Jana Master Prompt Antigravity**. Saya akan membina Master Prompt lengkap yang sempurna untuk anda tampal terus ke Google Antigravity!"
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50/50 via-white to-white space-y-6">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+                        <div>
+                            <span class="bg-blue-100 text-blue-800 border border-blue-200 px-3.5 py-1 rounded-full text-xs font-bold font-mono">BAB 18 • PERALATAN INTERAKTIF</span>
+                            <h2 class="text-2xl md:text-3xl font-black text-slate-900 mt-2">⚡ Generator Master Prompt Google Antigravity</h2>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="fillSampleGeneratorData()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 text-xs font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1.5">
+                                <i class="fa-solid fa-lightbulb"></i>
+                                <span>Isi Contoh Otomatis</span>
+                            </button>
+                            <button onclick="resetGeneratorForm()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1.5">
+                                <i class="fa-solid fa-rotate-left"></i>
+                                <span>Reset Borang</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- INTERACTIVE FORM GRID (9 FIELDS) -->
+                    <form onsubmit="event.preventDefault(); generateMasterPrompt();" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            
+                            <!-- 1. IDENTITI SISTEM -->
+                            <div class="space-y-1.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <label class="text-xs md:text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                                    <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">1</span>
+                                    <span>Identiti Sistem:</span>
+                                </label>
+                                <input type="text" id="gen-identity" placeholder="Cth: Sistem Pengurusan Kehadiran Staf PMTG" class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs md:text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none bg-white font-medium">
+                            </div>
+
+                            <!-- 2. TUJUAN SISTEM -->
+                            <div class="space-y-1.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <label class="text-xs md:text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                                    <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">2</span>
+                                    <span>Tujuan Sistem:</span>
+                                </label>
+                                <input type="text" id="gen-goal" placeholder="Cth: Merekod kehadiran harian staf dan memantau permohonan cuti" class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs md:text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none bg-white font-medium">
+                            </div>
+
+                            <!-- 3. KONTEKS PROJEK -->
+                            <div class="space-y-1.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <label class="text-xs md:text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                                    <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">3</span>
+                                    <span>Konteks Projek:</span>
+                                </label>
+                                <input type="text" id="gen-context" placeholder="Cth: Projek dalaman pejabat untuk menguruskan rekod kehadiran tanpa kertas" class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs md:text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none bg-white font-medium">
+                            </div>
+
+                            <!-- 4. TARGET PENGGUNA -->
+                            <div class="space-y-1.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <label class="text-xs md:text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                                    <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">4</span>
+                                    <span>Target Pengguna:</span>
+                                </label>
+                                <input type="text" id="gen-target" placeholder="Cth: Staf Pejabat, Pegawai HR, & Pentadbir Fakulti" class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs md:text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none bg-white font-medium">
+                            </div>
+
+                            <!-- 5. FUNGSI UTAMA -->
+                            <div class="space-y-1.5 bg-slate-50 p-4 rounded-xl border border-slate-200 md:col-span-2">
+                                <label class="text-xs md:text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                                    <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">5</span>
+                                    <span>Fungsi Utama (Senaraikan):</span>
+                                </label>
+                                <textarea id="gen-features" rows="2" placeholder="Cth: 1. Borang pendaftaran clock-in/out. 2. Rekod Cuti. 3. Carian nama staf. 4. Padam rekod" class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs md:text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none bg-white font-medium"></textarea>
+                            </div>
+
+                            <!-- 6. HALAMAN & MENU -->
+                            <div class="space-y-1.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <label class="text-xs md:text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                                    <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">6</span>
+                                    <span>Halaman & Menu:</span>
+                                </label>
+                                <input type="text" id="gen-pages" placeholder="Cth: Dashboard Utama, Borang Kehadiran, Rekod Cuti, Laporan Kehadiran" class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs md:text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none bg-white font-medium">
+                            </div>
+
+                            <!-- 7. DATA & MAKLUMAT -->
+                            <div class="space-y-1.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <label class="text-xs md:text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                                    <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">7</span>
+                                    <span>Data & Maklumat:</span>
+                                </label>
+                                <input type="text" id="gen-data" placeholder="Cth: Nama Staf, No Pekerja, Tarikh, Masa Clock-in, Status (Hadir/Cuti), Catatan" class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs md:text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none bg-white font-medium">
+                            </div>
+
+                            <!-- 8. REKA BENTUK & GAYA VISUAL -->
+                            <div class="space-y-1.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <label class="text-xs md:text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                                    <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">8</span>
+                                    <span>Reka Bentuk & Gaya Visual:</span>
+                                </label>
+                                <input type="text" id="gen-design" placeholder="Cth: Mod Gelap (Dark Mode) Executive dengan Tailwind CSS CDN, kad lut sinar" class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs md:text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none bg-white font-medium">
+                            </div>
+
+                            <!-- 9. USER FLOW / ALIRAN PENGGUNA -->
+                            <div class="space-y-1.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <label class="text-xs md:text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                                    <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">9</span>
+                                    <span>User Flow / Aliran Pengguna:</span>
+                                </label>
+                                <input type="text" id="gen-flow" placeholder="Cth: Buka web -> Pilih status -> Isi borang -> Tekan Simpan -> Data muncul & disimpan di localStorage" class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-xs md:text-sm focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none bg-white font-medium">
+                            </div>
+
+                        </div>
+
+                        <!-- GENERATE BUTTON -->
+                        <div class="pt-2">
+                            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-base font-black py-4 px-6 rounded-2xl transition-all shadow-xl shadow-blue-500/20 flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                                <span>⚡ JANA MASTER PROMPT ANTIGRAVITY</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- GENERATED OUTPUT SECTION -->
+                    <div id="output-section" class="hidden space-y-4 pt-4 border-t border-slate-200">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-slate-900 text-base md:text-lg flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                                <span>Hasil Master Prompt Antigravity Siap Digunakan!</span>
+                            </h4>
+                            <button onclick="copyElementText('generated-prompt-output')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-xl transition flex items-center space-x-1.5 shadow-sm">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Salin Master Prompt</span>
+                            </button>
+                        </div>
+
+                        <div class="bg-slate-900 p-5 rounded-2xl border border-slate-800 shadow-md">
+                            <pre id="generated-prompt-output" class="bg-slate-950 p-4 rounded-xl text-xs md:text-sm text-cyan-300 font-mono border border-slate-800 whitespace-pre-wrap break-words overflow-hidden max-w-full leading-relaxed"></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                    <div class="flex items-center space-x-2"><i class="fa-solid fa-copyright text-blue-600 text-sm"></i><span class="font-semibold text-slate-700">Hak Cipta Terpelihara &copy; eBook Google Antigravity</span></div>
+                    <div class="flex items-center space-x-3 bg-slate-900 px-5 py-2 rounded-2xl border border-slate-800 shadow-md"><span class="text-xs text-slate-400 font-mono font-bold tracking-wider">TRADEMARK:</span><img src="images/trademark_master_azrul.png" alt="Master Azrul Trademark" class="h-10 md:h-12 w-auto trademark-watermark object-contain"></div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-cyan-300 px-5 py-3 rounded-2xl text-sm font-semibold shadow-2xl transition-all duration-300 opacity-0 pointer-events-none transform translate-y-3 z-50 flex items-center space-x-2 border border-slate-700">
+        <i class="fa-solid fa-check-circle text-emerald-400 text-lg"></i>
+        <span id="toast-msg">Teks disalin ke papan keratan!</span>
+    </div>
+
+    <!-- Switcher Script -->
+    <script>
+        const chapterTitles = [
+            "Bab 1: Pengenalan & SOP Manual",
+            "Bab 2: Manual Pemasangan & Persediaan",
+            "Bab 3: Manual ChatGPT Master Prompt",
+            "Bab 4: Manual Setup Folder & Path",
+            "Bab 5: Manual Launch Master Prompt",
+            "Bab 6: Manual Semakan & Repair Ralat",
+            "Bab 7: Koleksi 5 Master Prompt",
+            "Bab 8: Tutorial Manual 1: Landing Page",
+            "Bab 9: Tutorial Manual 2: Borang Data",
+            "Bab 10: Tutorial Manual 3: Admin Dashboard",
+            "Bab 11: Manual Troubleshooting Ralat",
+            "Bab 12: Manual Setup GitHub & Desktop",
+            "Bab 13: Manual Upload Ke GitHub",
+            "Bab 14: Manual Publish Live Web URL",
+            "Bab 15: Manual Kemas Kini Masa Hadapan",
+            "Bab 16: Rakaman Video Panduan",
+            "Bab 17: Lampiran Contoh Sistem",
+            "Bab 18: Generator Master Prompt"
+        ];
+
+        let currentTab = 1;
+
+        function showTab(n) {
+            currentTab = n;
+            for (let i = 1; i <= 18; i++) {
+                const page = document.getElementById('tab-content-' + i);
+                const btn = document.getElementById('tab-btn-' + i);
+                if (page) {
+                    if (i === n) {
+                        page.classList.remove('hidden');
+                    } else {
+                        page.classList.add('hidden');
+                    }
+                }
+                if (btn) {
+                    if (i === n) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                }
+            }
+
+            document.getElementById('current-chapter-indicator').innerText = 'Bab ' + n + ' daripada 18';
+            document.getElementById('btn-prev').disabled = (n === 1);
+            document.getElementById('btn-next').disabled = (n === 18);
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function prevTab() {
+            if (currentTab > 1) showTab(currentTab - 1);
+        }
+
+        function nextTab() {
+            if (currentTab < 18) showTab(currentTab + 1);
+        }
+
+        function copyElementText(id) {
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text);
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+            }, 2000);
+        }
+
+        /* ⚡ GENERATOR MASTER PROMPT ANTIGRAVITY FUNCTIONS */
+        function generateMasterPrompt() {
+            const identity = document.getElementById('gen-identity').value.trim() || '[NYATAKAN IDENTITI SISTEM]';
+            const goal = document.getElementById('gen-goal').value.trim() || '[NYATAKAN TUJUAN SISTEM]';
+            const context = document.getElementById('gen-context').value.trim() || '[NYATAKAN KONTEKS PROJEK]';
+            const target = document.getElementById('gen-target').value.trim() || '[NYATAKAN TARGET PENGGUNA]';
+            const features = document.getElementById('gen-features').value.trim() || '[NYATAKAN FUNGSI UTAMA]';
+            const pages = document.getElementById('gen-pages').value.trim() || '[NYATAKAN HALAMAN & MENU]';
+            const data = document.getElementById('gen-data').value.trim() || '[NYATAKAN DATA & MAKLUMAT]';
+            const design = document.getElementById('gen-design').value.trim() || '[NYATAKAN REKA BENTUK & GAYA VISUAL]';
+            const flow = document.getElementById('gen-flow').value.trim() || '[NYATAKAN ALIRAN PENGGUNA]';
+
+            const compiledPrompt = `Bina satu fail index.html untuk "${identity}" di Google Antigravity yang mengandungi spesifikasi lengkap seperti di bawah. Saya tiada latar belakang coding langsung.
+
+1. IDENTITI & TUJUAN SISTEM:
+- Identiti Sistem: ${identity}
+- Tujuan Utama: ${goal}
+- Konteks Projek: ${context}
+- Sasaran Pengguna: ${target}
+
+2. HALAMAN, MENU & REKA BENTUK VISUAL:
+- Halaman & Menu: ${pages}
+- Gaya Visual & Tema: ${design} (Gunakan Tailwind CSS CDN untuk paparan moden, kemas & responsive di komputer serta skrin telefon bimbit).
+
+3. FUNGSI UTAMA & DATA:
+- Fungsi Utama:
+${features}
+- Data & Maklumat Yang Diisi: ${data}
+- Pangkalan Data: Simpan semua data yang dimasukkan ke dalam memori tempatan pelayar (localStorage) secara kekal supaya data tidak hilang apabila di-refresh.
+
+4. ALIRAN PENGGUNA (USER FLOW):
+${flow}
+
+Sila pastikan semua borang, butang simpan, padam, carian, dan jadual berfungsi 100% tanpa sebarang ralat!`;
+
+            document.getElementById('generated-prompt-output').innerText = compiledPrompt;
+            document.getElementById('output-section').classList.remove('hidden');
+            document.getElementById('output-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function fillSampleGeneratorData() {
+            document.getElementById('gen-identity').value = "Sistem Pengurusan Kehadiran & Cuti Staf PMTG";
+            document.getElementById('gen-goal').value = "Merekod kehadiran harian staf dan menguruskan permohonan cuti secara digital";
+            document.getElementById('gen-context').value = "Sistem dalaman pejabat untuk menggantikan sistem kedatangan manual kertas";
+            document.getElementById('gen-target').value = "Staf Pejabat, Pegawai HR, & Pentadbir Fakulti";
+            document.getElementById('gen-features').value = "1. Borang pendaftaran clock-in & clock-out harian.\n2. Borang permohonan cuti harian.\n3. Jadual senarai rekod kehadiran berserta ikon status.\n4. Petak carian nama staf.\n5. Butang Padam Rekod pada setiap baris.";
+            document.getElementById('gen-pages').value = "Dashboard Utama, Borang Kehadiran, Rekod Cuti, Laporan Kehadiran";
+            document.getElementById('gen-data').value = "Nama Staf, No Pekerja, Tarikh, Masa Clock-in, Pilihan Status (Hadir/Cuti/Sakit), Catatan";
+            document.getElementById('gen-design').value = "Mod Gelap (Dark Mode) Executive dengan Tailwind CSS CDN, kad lut sinar glassmorphism, butang biru & hijau";
+            document.getElementById('gen-flow').value = "Pengguna membuka web -> Pilih status kehadiran -> Isi borang -> Tekan Simpan -> Data dipaparkan pada jadual & disimpan di localStorage";
+            
+            generateMasterPrompt();
+        }
+
+        function resetGeneratorForm() {
+            document.getElementById('gen-identity').value = "";
+            document.getElementById('gen-goal').value = "";
+            document.getElementById('gen-context').value = "";
+            document.getElementById('gen-target').value = "";
+            document.getElementById('gen-features').value = "";
+            document.getElementById('gen-pages').value = "";
+            document.getElementById('gen-data').value = "";
+            document.getElementById('gen-design').value = "";
+            document.getElementById('gen-flow').value = "";
+            document.getElementById('output-section').classList.add('hidden');
+        }
+
+        const REQUIRED_PIN = "469310";
+
+        function handleLogin(e) {
+            if (e) e.preventDefault();
+            const pinInput = document.getElementById('pin-input');
+            const loginError = document.getElementById('login-error');
+            const loginScreen = document.getElementById('login-screen');
+
+            if (pinInput.value.trim() === REQUIRED_PIN) {
+                sessionStorage.setItem('antigravity_authenticated', 'true');
+                loginScreen.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    loginScreen.classList.add('hidden');
+                }, 300);
+            } else {
+                loginError.classList.remove('hidden');
+                pinInput.classList.add('border-red-500', 'bg-red-50');
+                pinInput.value = '';
+                pinInput.focus();
+            }
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem('antigravity_authenticated');
+            const loginScreen = document.getElementById('login-screen');
+            const pinInput = document.getElementById('pin-input');
+            const loginError = document.getElementById('login-error');
+            
+            if (loginScreen) {
+                loginScreen.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+                if (pinInput) {
+                    pinInput.value = '';
+                    pinInput.classList.remove('border-red-500', 'bg-red-50');
+                    pinInput.focus();
+                }
+                if (loginError) {
+                    loginError.classList.add('hidden');
+                }
+            }
+
+            const toast = document.getElementById('toast');
+            if (toast) {
+                document.getElementById('toast-msg').innerText = '🔒 Anda telah log keluar daripada eBook!';
+                toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+                setTimeout(() => {
+                    toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+                    document.getElementById('toast-msg').innerText = 'Teks disalin ke papan keratan!';
+                }, 2500);
+            }
+        }
+
+        // Check authentication on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('antigravity_authenticated') === 'true') {
+                const loginScreen = document.getElementById('login-screen');
+                if (loginScreen) loginScreen.classList.add('hidden');
+            }
+        });
+
+        // Initialize Tab 1
+        showTab(1);
+    </script>
+</body>
+</html>
